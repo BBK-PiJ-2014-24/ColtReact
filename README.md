@@ -1,2 +1,2 @@
 # ColtReact
-Undemy - Colt Steele React Course
+Udemy - Colt Steele React Course
