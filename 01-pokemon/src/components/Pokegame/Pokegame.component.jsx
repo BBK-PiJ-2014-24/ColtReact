@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import Pokedex from '../pokedex/Pokedex.component';
 
+// Component for the Pokemon Game
+// ------------------------------
+// Default Props
+// pokemon - Total Universe of Pokemon
 class Pokegame extends Component {
 
 
@@ -23,12 +27,13 @@ class Pokegame extends Component {
 
         let hand1 = [];
         let hand2 = [...this.props.pokemon ]
+        // Create two random card hands
         while(hand1.length < hand2.length){
             let randIdx = Math.floor(Math.random()*hand2.length);
             let randPokemon  = hand2.splice(randIdx,1)[0]; // splice off a single elem into a new array and take this [0] elem
             hand1.push(randPokemon);
         }
-        console.log(hand2);
+        // Calculate the sums scores of each hand
         let exp1 = hand1.reduce((sum, pokemon) => sum + pokemon.base_experience,0);
         let exp2 = hand2.reduce((sum, pokemon) => sum + pokemon.base_experience,0);
 

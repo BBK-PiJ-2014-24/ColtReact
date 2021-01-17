@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import Pokecard from "../pokecard/Pokecard.component.jsx";
 import './Pokedex.css';
+
+// component for an Array of Pokemon Cards
+// ---------------------------------------
+// Props -
+// pokemon - array of cards
+// totalexp - total score of hand
+// is Winner - boolean
 class Pokedex extends Component {
 
 
 
     render(){
+        // Logic for winning Hand
         let title;
         if (this.props.isWinner){
             title=<h1 className="Pokedex-winner">Winning Hand</h1>

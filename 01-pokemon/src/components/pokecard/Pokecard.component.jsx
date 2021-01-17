@@ -6,6 +6,9 @@ const POKE_API ="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/";
 
 let padToThree = (number) => (number <= 999 ? `00${number}`.slice(-3) : number ); // slice last 3 numbers
 
+// Component for Pokemon Card
+// --------------------------
+// Props: id, name, type, exp
 class Pokecard extends Component {
 
 
