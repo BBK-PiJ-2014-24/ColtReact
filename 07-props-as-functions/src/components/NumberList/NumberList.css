@@ -1,0 +1,9 @@
+.NumberList {
+  margin: auto;
+  height: 200px;
+  width: 200px;
+}
+
+.NumberList ul li {
+  list-style-type: none;
+}
