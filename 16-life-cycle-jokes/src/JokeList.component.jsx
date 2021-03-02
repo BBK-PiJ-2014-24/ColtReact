@@ -19,6 +19,7 @@ class JokeList extends Component {
             jokesArr: JSON.parse(window.localStorage.getItem('jokesArr') || '[]'),
             isLoading: false,
         };
+        this.seenJokes = new Set(this.state.jokesArr.map(j => j.text)); // Set used to check for duplication.
         this.handleClick = this.handleClick.bind(this); 
     }
 
@@ -29,20 +30,27 @@ class JokeList extends Component {
         }
     }
     async getJokes(){    
-        let jokes = [];
-        while (jokes.length < this.props.numJokesToGet){
+        try{
+            let jokes = [];
+            while (jokes.length < this.props.numJokesToGet){
 
-            let res = await axios.get(URL, {headers: {Accept: "application/json"}});
-            jokes.push({id: uuidv4(), text: res.data.joke, votes: 0});
+                let res = await axios.get(URL, {headers: {Accept: "application/json"}});
+                if(!this.seenJokes.has(res.data.joke)){
+                    jokes.push({id: uuidv4(), text: res.data.joke, votes: 0});
+                }
+            }
+            this.setState(prevState => (
+            {
+                    isLoading: false,
+                    jokesArr: [...prevState.jokesArr, ...jokes]
+            }    
+            ),
+            () => window.localStorage.setItem('jokesArr', JSON.stringify(this.state.jokesArr))
+            );
+        } catch(e){
+            alert(e);
+            this.setState({isLoading: false});
         }
-        this.setState(prevState => (
-           {
-                isLoading: false,
-                jokesArr: [...prevState.jokesArr, ...jokes]
-           }    
-        ),
-        () => window.localStorage.setItem('jokesArr', JSON.stringify(this.state.jokesArr))
-        );
     }
          
 
@@ -69,6 +77,7 @@ class JokeList extends Component {
             </div>
             )
         } else {
+            let orderedJokes = [...this.state.jokesArr].sort((a, b) => b.votes - a.votes);
         return(
                 <div className='JokeList'>
                     <div className='JokeList-sidebar'>
@@ -77,7 +86,7 @@ class JokeList extends Component {
                         <button className='JokeList-getmore' onClick={this.handleClick}>New Jokes</button>
                     </div>
                     <div className='JokeList-jokes'>
-                        {this.state.jokesArr.map(j => (
+                        {orderedJokes.map(j => (
                                 <Joke key={j.id} 
                                     text={j.text} 
                                     votes={j.votes}
