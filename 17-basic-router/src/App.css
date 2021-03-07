@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  background-color: #282c34;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: center;
+  align-items: center;
+  position: relative;
+}
+
+.App-nav {
+  position: fixed;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-bottom: 40px;
+  background-color: goldenrod;
+}
+
+.active-link {
+  color: red;
+  border-bottom: 5px solid purple;
+}
+
+.App-nav a {
+  margin: 30px;
+  padding: 30px;
+}
+
+img {
+  width: 30%;
+}
