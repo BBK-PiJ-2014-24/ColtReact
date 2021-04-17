@@ -30,6 +30,9 @@ class Palette extends Component {
             <ColorBox background={c[this.state.format]} 
                       name={c.name}
                       key={c.id}
+                      id={c.id}
+                      paletteId={this.props.palette.id}
+                      showLink={true}
                      />
         ));
         return (
