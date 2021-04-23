@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import ColorBox from '../ColorBox/ColorBox.component';
 import NavBar from '../NavBar/NavBar.component';
 
-import '../Palette/Palette.css';
+import {withStyles} from '@material-ui/styles';
+
+import styles from '../Styles/PaletteStyles';
+// import '../Palette/Palette.css';
 import PaletteFooter from '../PaletteFooter/PaletteFooter.component';
 
 
@@ -37,14 +40,14 @@ class Palette extends Component {
                      />
         ));
         return (
-            <div className='Palette'>
+            <div className={this.props.classes.Palette}>
                 <NavBar level={this.state.level}  
                         changeLevel={this.changeLevel}
                         handleChange={this.changeFormat}  
                         showSlider={true}  
                         />
                 {/* NavBar */}
-                <div className='Palette-colors'>
+                <div className={this.props.classes.PaletteColors}>
                     {/* Color Boxes */}
                     {colorBoxes}
                 </div>
@@ -58,4 +61,4 @@ class Palette extends Component {
 
 }
 
-export default Palette;
+export default withStyles(styles)(Palette);
