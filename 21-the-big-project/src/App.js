@@ -5,6 +5,7 @@ import Palette from './Palette/Palette.component';
 import seedColors from './seedColors.js';
 import {generatePalette} from './colourHelpers';
 import SingleColorPalette from './SingleColorPalette/SingleColorPalette.component';
+import NewPaletteForm from './NewPaletteForm/NewPaletteForm.component';
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
     return (
       <div>
         <Switch>
+          <Route exact path='/palette/new' render={()=> <NewPaletteForm /> } />
           <Route exact path='/' 
                        render={(routeProps)=> <PaletteList  palettes={seedColors} {...routeProps} />} />
           <Route exact path='/palette/:id' 
