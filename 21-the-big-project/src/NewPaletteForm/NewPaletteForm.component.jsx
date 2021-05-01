@@ -91,6 +91,7 @@ class NewPaletteForm extends Component {
             currentColor: 'teal',
             colors:[{color:'blue', name:'blue'}],
             newColorName:'',
+            newPaletteName: '',
         };
         this.updateCurrentColor = this.updateCurrentColor.bind(this);
         this.addNewColor = this.addNewColor.bind(this);
@@ -111,6 +112,11 @@ class NewPaletteForm extends Component {
         )
       }
       );
+      ValidatorForm.addValidationRule('isPaletteNameUnique', value => 
+          this.props.palettes.every(
+            (p) => p.paletteName.toLowerCase() !== value.toLowerCase()
+          )
+      );
     }
 
       handleDrawerOpen = () => {
@@ -130,15 +136,17 @@ class NewPaletteForm extends Component {
             color: this.state.currentColor,
             name: this.state.newColorName
           };
-          this.setState({colors: [...this.state.colors, newColor]});
+          this.setState({colors: [...this.state.colors, newColor], newColorName: ''});
       }
 
       handleChange(e){
-        this.setState({newColorName: e.target.value});
+        this.setState({
+          [e.target.name]: e.target.value
+        });
       }
       
       handleSubmit(){
-        let newName= 'New Test Palette';
+        let newName= this.state.newPaletteName;
         const newPalette = {
           paletteName: newName,
           id: newName.toLowerCase().replace(/ /g, '-'),
@@ -146,6 +154,12 @@ class NewPaletteForm extends Component {
         }
         this.props.savePalette(newPalette);
         this.props.history.push('/');// redirect
+      }
+      
+      deleteColorBox(colorName){
+          this.setState({
+            colors: this.state.colors.filter( (c) => c.name !== colorName ),
+      });
       }
     
       render() {
@@ -173,9 +187,19 @@ class NewPaletteForm extends Component {
                 <Typography variant="h6" color="inherit" noWrap>
                   Persistent drawer
                 </Typography>
-                <Button variant='contained'
-                        color='secondary'
-                        onClick={this.handleSubmit}>Save Palette</Button>
+                <ValidatorForm onSubmit={this.handleSubmit}>
+                  <TextValidator value={this.state.newPaletteName}
+                                name='newPaletteName'
+                                label='Palette Name'
+                                onChange={this.handleChange}
+                                validators={['required', 'isPaletteNameUnique' ] }
+                                errorMessages={['Palette must have name', 'Palette must have unique name']}
+                  />
+                  <Button variant='contained'
+                          color='secondary'
+                          type='submit'>Save Palette
+                  </Button>
+                </ValidatorForm>
               </Toolbar>
             </AppBar>
             <Drawer
@@ -203,8 +227,9 @@ class NewPaletteForm extends Component {
               />
               <ValidatorForm onSubmit={this.addNewColor}>
                 <TextValidator value={this.state.newColorName} 
+                               name='newColorName'
                                onChange={this.handleChange}
-                               validators={['required', 'isColorNameUnique', 'isColorUnique']}
+                               validators={['required', 'isColorNameUnique', 'isColorUnique' ]}
                                errorMessages={['this field is required', 'Color name is not unique', 'Color is not unique']}
                 />
                 <Button variant='contained' 
@@ -220,7 +245,10 @@ class NewPaletteForm extends Component {
             >
               <div className={classes.drawerHeader} />
                   {this.state.colors.map((c) => (
-                      <DragableColorBox color={c.color} name={c.name} />
+                      <DragableColorBox key={c.name}
+                                        color={c.color}
+                                        name={c.name}
+                                        handleClick={()=> this.deleteColorBox(c.name)} />
                   ))}
             </main>
           </div>
