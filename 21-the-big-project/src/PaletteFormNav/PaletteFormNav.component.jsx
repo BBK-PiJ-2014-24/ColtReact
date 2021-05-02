@@ -23,6 +23,37 @@ import {ChromePicker, chromePicker} from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import {arrayMove} from 'react-sortable-hoc';
 
+
+const drawerWidth = 400;
+const styles = theme => ({
+
+  root: {
+      display: 'flex'
+  },
+
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    flexDirection:'row',
+    justifyContent:'space-between',
+    height: '64px',
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginLeft: 12,
+    marginRight: 20,
+  },
+});
+
 class PaletteFormNav extends Component {
 
     constructor(props){
@@ -52,7 +83,7 @@ class PaletteFormNav extends Component {
     render(){
         const {classes, open} = this.props;
         return(
-            <div>
+            <div className={classes.root}>
                 <CssBaseline />
                 <AppBar
                 position="fixed"
@@ -70,16 +101,21 @@ class PaletteFormNav extends Component {
                     <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" color="inherit" noWrap>
-                    Persistent drawer
+                    Create a Palette
                     </Typography>
-                    <ValidatorForm onSubmit={() => this.props.handleSubmit(this.state.newPaletteName)}>
-                    <TextValidator value={this.state.newPaletteName}
-                                    name='newPaletteName'
-                                    label='Palette Name'
-                                    onChange={this.handleChange}
-                                    validators={['required', 'isPaletteNameUnique' ] }
-                                    errorMessages={['Palette must have name', 'Palette must have unique name']}
-                    />
+                </Toolbar>
+                    <div className={classes.navBtns}>
+                        <ValidatorForm onSubmit={() => this.props.handleSubmit(this.state.newPaletteName)}>
+                            <TextValidator value={this.state.newPaletteName}
+                                            name='newPaletteName'
+                                            label='Palette Name'
+                                            onChange={this.handleChange}
+                                            validators={['required', 'isPaletteNameUnique' ] }
+                                            errorMessages={['Palette must have name', 'Palette must have unique name']}
+                                            />
+                        </ValidatorForm>
+                    </div>
+
                     <Button variant='contained'
                             color='secondary'
                             type='submit'
@@ -89,8 +125,6 @@ class PaletteFormNav extends Component {
                     <Link to='/'>
                         <Button variant='contained' color='primary'>Go Back</Button>
                     </Link>
-                    </ValidatorForm>
-                </Toolbar>
                 </AppBar>
             </div>
 
@@ -101,4 +135,4 @@ class PaletteFormNav extends Component {
 
 }
 
-export default PaletteFormNav;
+export default withStyles(styles, {withTheme: true}) (PaletteFormNav);
