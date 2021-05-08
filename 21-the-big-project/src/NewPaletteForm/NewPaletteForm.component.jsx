@@ -24,13 +24,13 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import {arrayMove} from 'react-sortable-hoc';
 import PaletteFormNav from '../PaletteFormNav/PaletteFormNav.component';
 import ColorPickerForm from '../ColorPickerForm/ColorPickerForm.component';
-
+import styles from '../Styles/NewPaletteFormStyles';
 const drawerWidth = 400;
 
-const styles = theme => ({
-  root: {
-    display: 'flex',
-  },
+// const styles = theme => ({
+//   root: {
+//     display: 'flex',
+//   },
   // appBar: {
   //   transition: theme.transitions.create(['margin', 'width'], {
   //     easing: theme.transitions.easing.sharp,
@@ -49,58 +49,58 @@ const styles = theme => ({
   //   marginLeft: 12,
   //   marginRight: 20,
   // },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-    display: 'flex',
-    alignItems: 'center',
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    height: 'calc(100vh - 64px)',
-    padding: theme.spacing.unit * 3,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-  container: {
-    width: '90%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%'
-  },
-  buttonContainer: {
-    width: '100%',
-  },
+//   hide: {
+//     display: 'none',
+//   },
+//   drawer: {
+//     width: drawerWidth,
+//     flexShrink: 0,
+//   },
+//   drawerPaper: {
+//     width: drawerWidth,
+//     display: 'flex',
+//     alignItems: 'center',
+//   },
+//   drawerHeader: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     padding: '0 8px',
+//     ...theme.mixins.toolbar,
+//     justifyContent: 'flex-end',
+//   },
+//   content: {
+//     flexGrow: 1,
+//     height: 'calc(100vh - 64px)',
+//     padding: theme.spacing.unit * 3,
+//     transition: theme.transitions.create('margin', {
+//       easing: theme.transitions.easing.sharp,
+//       duration: theme.transitions.duration.leavingScreen,
+//     }),
+//     marginLeft: -drawerWidth,
+//   },
+//   contentShift: {
+//     transition: theme.transitions.create('margin', {
+//       easing: theme.transitions.easing.easeOut,
+//       duration: theme.transitions.duration.enteringScreen,
+//     }),
+//     marginLeft: 0,
+//   },
+//   container: {
+//     width: '90%',
+//     display: 'flex',
+//     flexDirection: 'column',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     height: '100%'
+//   },
+//   buttonContainer: {
+//     width: '100%',
+//   },
 
-  button: {
-    width: '50%'
-  }
-});
+//   button: {
+//     width: '50%'
+//   }
+// });
 
 
 class NewPaletteForm extends Component {
