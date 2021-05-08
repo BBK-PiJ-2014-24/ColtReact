@@ -20,8 +20,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import {ChromePicker, chromePicker} from 'react-color';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import {arrayMove} from 'react-sortable-hoc';
+import PaletteMetaForm from '../PaletteMetaForm/PaletteMetaForm.component';
 
 
 const drawerWidth = 400;
@@ -60,24 +60,27 @@ class PaletteFormNav extends Component {
         super(props);
         this.state={
             newPaletteName: '',
+            isFormModalOpen: false,
         }
         this.handleChange = this.handleChange.bind(this);
-    }
-
-
-    componentDidMount(){ 
-
-      ValidatorForm.addValidationRule('isPaletteNameUnique', value => 
-          this.props.palettes.every(
-            (p) => p.paletteName.toLowerCase() !== value.toLowerCase()
-          )
-      );
+        this.handleClickModalOpen = this.handleClickModalOpen.bind(this);
+        this.handleClickModalClose = this.handleClickModalClose.bind(this);
     }
 
     handleChange(e){
         this.setState({
           [e.target.name]: e.target.value
         });
+    }
+
+    handleClickModalOpen(){
+        console.log(this.state.isFormModalOpen);
+        this.setState({isFormModalOpen: true});
+        console.log(this.state.isFormModalOpen);
+    }
+    
+    handleClickModalClose(){
+      this.setState({isFormModalOpen: false});
     }
 
     render(){
@@ -105,27 +108,21 @@ class PaletteFormNav extends Component {
                     </Typography>
                 </Toolbar>
                     <div className={classes.navBtns}>
-                        <ValidatorForm onSubmit={() => this.props.handleSubmit(this.state.newPaletteName)}>
-                            <TextValidator value={this.state.newPaletteName}
-                                            name='newPaletteName'
-                                            label='Palette Name'
-                                            onChange={this.handleChange}
-                                            validators={['required', 'isPaletteNameUnique' ] }
-                                            errorMessages={['Palette must have name', 'Palette must have unique name']}
-                                            />
-                        </ValidatorForm>
-                    </div>
-
-                    <Button variant='contained'
-                            color='secondary'
-                            type='submit'
-                            >
-                        Save Palette
-                    </Button>
                     <Link to='/'>
                         <Button variant='contained' color='primary'>Go Back</Button>
                     </Link>
+                    <Button variant="contained" 
+                            color="secondary" 
+                            onClick={this.handleClickModalOpen}>
+                    SAVE
+                    </Button>
+                  </div>
                 </AppBar>
+                 {this.state.isFormModalOpen && (<PaletteMetaForm palettes={this.props.palettes}
+                                  handleSubmit={this.props.handleSubmit} 
+                                  handleClose={this.handleClickModalClose}
+                                  /> 
+                 )}                  
             </div>
 
         );
