@@ -38,6 +38,7 @@ const styles = theme => ({
     }),
     flexDirection:'row',
     justifyContent:'space-between',
+    alignItems: 'center',
     height: '64px',
   },
   appBarShift: {
@@ -52,6 +53,16 @@ const styles = theme => ({
     marginLeft: 12,
     marginRight: 20,
   },
+  navBtns: {
+    marginRight: '1rem',
+    '& a': {
+      textDecoration: 'none',
+    }
+  },
+  btn: {
+    margin: '0 0.5rem',
+  },
+
 });
 
 class PaletteFormNav extends Component {
@@ -74,9 +85,7 @@ class PaletteFormNav extends Component {
     }
 
     handleClickModalOpen(){
-        console.log(this.state.isFormModalOpen);
         this.setState({isFormModalOpen: true});
-        console.log(this.state.isFormModalOpen);
     }
     
     handleClickModalClose(){
@@ -108,10 +117,13 @@ class PaletteFormNav extends Component {
                     </Typography>
                 </Toolbar>
                     <div className={classes.navBtns}>
-                    <Link to='/'>
-                        <Button variant='contained' color='primary'>Go Back</Button>
+                    <Link to='/' className={classes.link}>
+                        <Button className={classes.btn}
+                                variant='contained' 
+                                color='primary'>Go Back</Button>
                     </Link>
-                    <Button variant="contained" 
+                    <Button className={classes.btn}
+                            variant="contained" 
                             color="secondary" 
                             onClick={this.handleClickModalOpen}>
                     SAVE
