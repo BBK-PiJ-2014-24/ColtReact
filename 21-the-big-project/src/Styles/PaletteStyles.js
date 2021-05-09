@@ -1,4 +1,4 @@
-
+import mediaQueries from './mediaQueries';
 
 const styles={
     Palette: {
@@ -38,8 +38,20 @@ const styles={
             lineHeight: '30px',
             textTransform: 'uppercase',
             textDecoration: 'none',
-        }
+        },
 
+        [mediaQueries.down('lg')]: {
+            width: '25%',
+            height: '33.3333%',
+        },
+        [mediaQueries.down('md')]: {
+            width: '50%',
+            height: '20%',
+        },
+        [mediaQueries.down('xs')]: {
+            width: '100%',
+            height: '10%',
+        },
     }
 }
 export default styles;
