@@ -17,12 +17,20 @@ class App extends Component {
     }
     this.savePalette = this.savePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
+    this.deletePalette = this.deletePalette.bind(this);
   }
 
   findPalette(id){
     return this.state.palettes.find((palette) => {
       return palette.id === id;
     } );
+  }
+
+  deletePalette(id){
+    this.setState(
+      prevState => ({palettes: prevState.palettes.filter( p => p.id !== id)}),
+      this.syncLocalStorage
+    );
   }
 
   savePalette(newPalette){
@@ -44,7 +52,10 @@ class App extends Component {
                                                                     palettes={this.state.palettes} 
                                                                     {...routeProps}/> } />
           <Route exact path='/' 
-                       render={(routeProps)=> <PaletteList  palettes={this.state.palettes} {...routeProps} />} />
+                       render={(routeProps)=> <PaletteList  palettes={this.state.palettes}
+                                                            deletePalette={this.deletePalette}
+                                                            {...routeProps} />} 
+                                                            />
           <Route exact path='/palette/:id' 
                        render={ routeProps => (
                          <Palette palette={generatePalette(this.findPalette(routeProps.match.params.id))} />
