@@ -1,14 +1,21 @@
-
+import bg from './bg.svg';
+import bgc from './Confetti-Doodles.svg';
 import mediaQueries from './mediaQueries';
 
 const styles = {
     root: {
-        backgroundColor: 'blue',
+        // Background by https://www.svgbackgrounds.com/#confetti-doodles
+        backgroundColor: '#0805aa',
+        backgroundAttachment: 'fixed',
+        backgroundImage: `url(${bgc})`,
         height: '100vh',
         display:'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
-
+        overflow: 'scroll',
+    },
+    heading: {
+        fontSize: '2rem', 
     },
     container: {
         width: '50%',
