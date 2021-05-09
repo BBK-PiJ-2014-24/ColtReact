@@ -1,3 +1,4 @@
+import mediaQueries from './mediaQueries';
 
 const styles = {
     NavBar: {
@@ -19,6 +20,9 @@ const styles = {
         "& a": {
             textDecoration: 'none',
             color:'black',
+        },
+        [mediaQueries.down('xs')]: {
+            display: 'none',
         },
     },
 
@@ -44,6 +48,9 @@ const styles = {
             marginLeft: '-7px',
             marginTop: '-3px',
         },
+        [mediaQueries.down('md')]: {
+            width: '150px'
+        }
     },
 
     selectContainer: {

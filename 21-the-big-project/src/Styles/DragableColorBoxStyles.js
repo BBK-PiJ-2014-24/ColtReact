@@ -1,3 +1,5 @@
+import mediaQueries from './mediaQueries';
+
 
 const styles ={
    root: {
@@ -11,7 +13,19 @@ const styles ={
        '&:hover svg': {
            color:'rgb(224,224,224)',
            transform: 'scale(1.5)',
-       }
+       },
+       [mediaQueries.down('lg')]:{
+           width: '25%',
+           height: '20%'
+       },
+       [mediaQueries.down('lg')]:{
+           width: '50%',
+           height: '10%'
+       },
+       [mediaQueries.down('sm')]:{
+           width: '100%',
+           height: '5%'
+       },
    },
    boxContent: {
        position: 'absolute',
