@@ -3,6 +3,16 @@ import bgc from './Confetti-Doodles.svg';
 import mediaQueries from './mediaQueries';
 
 const styles = {
+    // CSS for React Transition Group
+    '@global': {
+        '.fade-exit':{
+           opacity: 1,
+        },
+        '.fade-exit-active': {
+            opacity: 0,
+            transition: 'opacity 500ms ease-out',
+        },
+    },
     root: {
         // Background by https://www.svgbackgrounds.com/#confetti-doodles
         backgroundColor: '#0805aa',
