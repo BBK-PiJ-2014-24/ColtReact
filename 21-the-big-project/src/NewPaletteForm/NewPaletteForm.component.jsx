@@ -244,6 +244,7 @@ class NewPaletteForm extends Component {
                                     deleteColorBox={this.deleteColorBox}
                                     axis='xy'
                                     onSortEnd={this.onSortEnd}
+                                    distance={20}
               />
             </main>
           </div>
