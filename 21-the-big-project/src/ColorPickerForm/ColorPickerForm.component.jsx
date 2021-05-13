@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import DragableColorBoxList from '../DragableColorBoxList/DragableColorBoxList.component';
-import classNames from 'classnames';
-import { lighten, withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+// import {Link} from 'react-router-dom';
+// import DragableColorBoxList from '../DragableColorBoxList/DragableColorBoxList.component';
+// import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+// import Drawer from '@material-ui/core/Drawer';
+// import CssBaseline from '@material-ui/core/CssBaseline';
+// import AppBar from '@material-ui/core/AppBar';
+// import Toolbar from '@material-ui/core/Toolbar';
+// import List from '@material-ui/core/List';
+// import Typography from '@material-ui/core/Typography';
+// import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -18,11 +18,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+// import MailIcon from '@material-ui/icons/Mail';
 import {ChromePicker, chromePicker} from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import {arrayMove} from 'react-sortable-hoc';
-import PaletteFormNav from '../PaletteFormNav/PaletteFormNav.component';
+// import {arrayMove} from 'react-sortable-hoc';
+// import PaletteFormNav from '../PaletteFormNav/PaletteFormNav.component';
 import styles from '../Styles/ColorPickerFormStyles';
 
 // const styles = {
@@ -97,7 +97,9 @@ class ColorPickerForm extends Component {
                             onChangeComplete={this.updateCurrentColor}
                             className={this.props.classes.picker}
               />
-              <ValidatorForm onSubmit={this.handleSubmit}>
+              <ValidatorForm onSubmit={this.handleSubmit}
+                             ref='form'
+                             instantValidate={false}>
                 <TextValidator className={this.props.classes.colorNameInput}
                                variant='filled'
                                margin='normal'

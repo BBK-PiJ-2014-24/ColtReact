@@ -8,7 +8,6 @@ import {generatePalette} from './colourHelpers';
 import SingleColorPalette from './SingleColorPalette/SingleColorPalette.component';
 import NewPaletteForm from './NewPaletteForm/NewPaletteForm.component';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { Divider } from '@material-ui/core';
 
 class App extends Component {
 
@@ -88,6 +87,14 @@ class App extends Component {
                               </Page>    
                             )}
                 />
+                {/* Bad Routes sent to home page rather than 404  */}
+                <Route 
+                      render={(routeProps)=> (
+                        <Page>
+                          <PaletteList  palettes={this.state.palettes}
+                                                            deletePalette={this.deletePalette}
+                                                            {...routeProps} /> 
+                        </Page> )} /> 
               </Switch>
             </CSSTransition>
           </TransitionGroup>

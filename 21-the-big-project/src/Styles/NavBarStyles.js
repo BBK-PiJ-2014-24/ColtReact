@@ -48,7 +48,7 @@ const styles = {
             marginLeft: '-7px',
             marginTop: '-3px',
         },
-        [mediaQueries.down('md')]: {
+        [mediaQueries.down('sm')]: {
             width: '150px'
         }
     },
