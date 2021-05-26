@@ -22,7 +22,7 @@ function useToDoState(initialTodos){
     }
 
     function editTodo(todoId, newTask){
-        const updatedTodo = todos.map( (td) => (td.id = todoId ? 
+        const updatedTodo = todos.map( (td) => (td.id === todoId ? 
                                 {...td, task: newTask } : td 
                                 ));
         setTodos(updatedTodo);
