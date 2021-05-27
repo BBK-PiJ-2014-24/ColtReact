@@ -1,6 +1,7 @@
 import React, {createContext, useReducer} from 'react';
 import useToDoState from '../hooks/useToDoState'; 
 import toDoReducer from '../reducers/ToDo.reducer';
+import {useLocalStorageReducer} from '../hooks/useLocalStorageReducer';
 
 const defaultValues = [
   {id:1, task: 'Clean fish tank', completed: false},
@@ -15,7 +16,7 @@ export const DispatchContext = createContext();
 export function ToDosProvider(props){
 
     // const todosStuff  = useToDoState(defaultValues);
-    const [todos, dispatch] = useReducer(toDoReducer, defaultValues);
+    const [todos, dispatch] = useLocalStorageReducer('todos', defaultValues, toDoReducer);
 
     return (
         <ToDosContext.Provider value={todos }  >

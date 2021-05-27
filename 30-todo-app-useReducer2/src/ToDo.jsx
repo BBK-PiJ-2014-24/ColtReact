@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, memo} from 'react';
 import useToggle from './hooks/useToggle';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -47,4 +47,4 @@ function ToDo(props){
     );
 }
 
-export default ToDo;
+export default memo(ToDo);// memo is a higher order component, which is like PureComponent for functions.

@@ -7,7 +7,7 @@ import {DispatchContext} from './contexts/ToDos.context'
 
 function ToDoForm(props){
 
-    const {dispatch} = useContext(DispatchContext);
+    const dispatch = useContext(DispatchContext);
     const [value, handleChange, reset] = useFormState('');
     return(
         <Paper style={{margin: '1rem 0', padding: '0 1rem'}}>
