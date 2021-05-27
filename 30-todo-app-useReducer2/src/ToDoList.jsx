@@ -8,7 +8,7 @@ import {ToDosContext} from './contexts/ToDos.context';
 // Note the use of <> which is shorthand for a fragment
 function TodoList(props) {
 
-    const {todos} = useContext(ToDosContext);
+    const todos = useContext(ToDosContext);
 
     if(todos.length){
         return(

@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import useFormState from './hooks/useFormState';
 import TextField from '@material-ui/core/TextField';
-import {ToDosContext} from './contexts/ToDos.context'
+import {DispatchContext} from './contexts/ToDos.context'
 
 function EditToDoForm(props){
 
-    const {dispatch} = useContext(ToDosContext);
+    const dispatch = useContext(DispatchContext);
 
     const [value, handleChange, reset] = useFormState(props.task);
 

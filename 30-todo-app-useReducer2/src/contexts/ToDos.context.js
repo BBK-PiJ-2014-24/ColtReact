@@ -8,7 +8,9 @@ const defaultValues = [
   {id:3, task: 'Haircut', completed: false},
 ];
 
+// double context to avoid unecessary re-rendering on state change
 export const ToDosContext = createContext();
+export const DispatchContext = createContext();
 
 export function ToDosProvider(props){
 
@@ -16,8 +18,10 @@ export function ToDosProvider(props){
     const [todos, dispatch] = useReducer(toDoReducer, defaultValues);
 
     return (
-        <ToDosContext.Provider value={{todos, dispatch}}  >
-            {props.children}
+        <ToDosContext.Provider value={todos }  >
+            <DispatchContext.Provider value={dispatch}>
+                {props.children}
+            </DispatchContext.Provider>
         </ToDosContext.Provider>
     )
 }

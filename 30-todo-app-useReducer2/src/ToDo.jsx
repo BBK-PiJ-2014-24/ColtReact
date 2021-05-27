@@ -8,11 +8,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { ListItemSecondaryAction } from '@material-ui/core';
 import EditToDoForm from './EditToDoForm';
-import {ToDosContext} from './contexts/ToDos.context';
+import {DispatchContext} from './contexts/ToDos.context';
 
 function ToDo(props){
 
-    const {dispatch} = useContext(ToDosContext);
+    const dispatch = useContext(DispatchContext);
 
     const [isEditing, toggleIsEditing] = useToggle(false);
     
